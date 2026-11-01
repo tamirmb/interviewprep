@@ -6,6 +6,7 @@
 #   make new name=<name>     create problems/<name>.cpp from the template
 #   make list                list problems
 #   make clean               remove build output
+#   make help                show this help
 
 CXX       ?= c++
 SANITIZE  := -fsanitize=address,undefined -fno-omit-frame-pointer
@@ -18,7 +19,7 @@ CATCH_OBJ := $(BUILD)/catch_amalgamated.o
 PROBLEMS  := $(basename $(notdir $(wildcard problems/*.cpp)))
 BINS      := $(addprefix $(BUILD)/,$(PROBLEMS))
 
-.PHONY: test list new clean $(PROBLEMS)
+.PHONY: test list new clean help $(PROBLEMS)
 
 test: $(BINS)
 	@status=0; for bin in $(BINS); do echo "== $$(basename $$bin)"; $$bin $(ARGS) || status=1; done; exit $$status
@@ -45,5 +46,9 @@ new:
 
 clean:
 	rm -rf $(BUILD)
+
+# Print the usage block from the header comment so it stays the single source of truth
+help:
+	@sed -n 's/^#   make/make/p' $(firstword $(MAKEFILE_LIST))
 
 -include $(wildcard $(BUILD)/*.d)
