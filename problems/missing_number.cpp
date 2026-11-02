@@ -10,7 +10,7 @@
 // Space complexity: O(1)
 //
 // Pseudocode
-// 1. Calculate target sum using Gauss's formular
+// 1. Calculate target sum using Gauss's formula
 // 2. Initialize integer to store sum of num array
 // 3. Iterate over nums and sum values of target array
 // 4. Subtract actual sum from target sum and return value
