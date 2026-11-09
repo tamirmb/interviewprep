@@ -9,10 +9,8 @@
 #   make help                show this help
 
 CXX       ?= c++
-SANITIZE  := -fsanitize=address,undefined -fno-omit-frame-pointer
-CXXFLAGS  := -std=c++20 -g -O1 $(SANITIZE) -Ithird_party/catch2 -Icommon -MMD -MP
+CXXFLAGS  := -std=c++20 -g -O1 -Ithird_party/catch2 -Icommon -MMD -MP
 WARNINGS  := -Wall -Wextra -Wpedantic
-LDFLAGS   := $(SANITIZE)
 
 BUILD     := build
 CATCH_OBJ := $(BUILD)/catch_amalgamated.o
